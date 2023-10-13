@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr
+        for (let i = 1; i < arr.length; i++) {
+          // tmp 초기값을 arr[i]로 셋팅, j를 반복문 바깥에서 부르므로 미리 변수선언.
+          let tmp = arr[i]
+          let j
+          for (j = i - 1; j >= 0; j--) {
+            // tmp 값이 arr[j] 값 보다 작으면
+            if (tmp < arr[j]) arr[j + 1] = arr[j]
+            // j는 배열 뒤에서 부터 오고 i - 1 에서 시작하므로
+            // i 위치랑 바꿔주려면 arr[j + 1] = arr[j] 와 같이 자리를 바꾸고 삽입하는게 맞음
+            else break
+          }
+          arr[j + 1] = tmp
+        }
+        return answer
+      }
+
+      let arr = [1, 5, 10, 9, 7, 6, 8, 4]
+      console.log(solution(arr))
+    </script>
+  </body>
+</html>
